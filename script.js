@@ -1,14 +1,4 @@
 /*
-Important note: you want to return the results of this function call, not console.log() them.
-You’re going to use what you return later on, so let’s test this function by using console.log to see the results:
-
-function playRound(playerSelection, computerSelection) {
-  // your code here!
-}
- 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
 Write a NEW function called game(). Use the previous function inside of this one to
 play a 5 round game that keeps score and reports a winner or loser at the end.
 You have not officially learned how to “loop” over code to repeat function calls…
@@ -20,18 +10,41 @@ Feel free to re-work your previous functions if you need to. Specifically, you m
 Feel free to create more “helper” functions if you think it would be useful.
 */
 
+let choices = ["Rock", "Paper", "Scissors"];
+let playerInput = "";
+let properInput = "";
+
+// Code for player input through prompt.
+/*
+do {
+    playerInput = prompt("Please enter your weapon of choice.").toLowerCase();
+    properInput = playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
+} while (!choices.includes(properInput))
+
+if (choices.includes(properInput)) {
+    playRound(properInput, getComputerChoice());
+} else {
+    console.log("Incorrect input.");
+}
+*/
+
 function getComputerChoice() {
     let choiceInt = Math.floor(Math.random() * 3);
-    let choices = ["Rock", "Paper", "Scissors"];
     return choices[choiceInt];
 }
 
-console.log(getComputerChoice());
+function playRound(playerSelection, computerSelection) {
+    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
 
-/*
-Write a function that plays a single round of Rock Paper Scissors.
-The function should take two parameters - the playerSelection and computerSelection -
-and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
-Make your function’s playerSelection parameter case-insensitive
-(so users can input rock, ROCK, RocK or any other variation).
-*/
+    if (playerSelection == computerSelection) {
+        return "Tie. " + playerSelection + " is the same as " + computerSelection;
+    } else if ((playerSelection == "Scissors" && computerSelection == "Paper") || (playerSelection == "Paper" && computerSelection == "Rock") || (playerSelection == "Rock" && computerSelection == "Scissors")) {
+        return "You Win! " + playerSelection + " beats " + computerSelection;
+    } else {
+        return "You Lose! " + computerSelection + " beats " + playerSelection;
+    }
+}
+
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
