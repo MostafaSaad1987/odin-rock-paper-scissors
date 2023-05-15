@@ -3,13 +3,23 @@ let playerInput = "";
 let properInput = "";
 let whoWon = "None";
 
-function getUserInput() {
-    do {
-        playerInput = prompt("Please enter your weapon of choice.").toLowerCase();
-        properInput = playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
-    } while (!choices.includes(properInput))
+let computerWins = 0;
+let playerWins = 0;
 
-    return properInput;
+let roundStatus = document.querySelector("#Round");
+
+let playerScore = document.querySelector("#Player-Score");
+let computerScore = document.querySelector("#Computer-Score");
+
+let buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+    button.addEventListener("click", getUserInput);
+});
+
+function getUserInput() {
+    playerInput = this.id;
+    game();
 }
 
 function getComputerChoice() {
@@ -18,8 +28,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-
     if (playerSelection == computerSelection) {
         whoWon = "None";
         return "Tie. " + playerSelection + " is the same as " + computerSelection;
@@ -33,33 +41,34 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let computerWins = 0;
-    let playerWins = 0;
 
-    for (let i = 0; i < 5; i++) {
-        let user = getUserInput();
+    if (playerWins < 5 && computerWins < 5) {
+        let user = playerInput;
         let computer = getComputerChoice();
         let message = playRound(user, computer);
 
         switch (whoWon) {
             case "Player":
                 playerWins++;
+                playerScore.textContent = "Player: " + playerWins;
                 break;
             case "Computer":
                 computerWins++;
+                computerScore.textContent = "Computer: " + computerWins;
                 break;
         }
 
-        console.log(message);
+        roundStatus.textContent = message;
     }
 
-    if (computerWins > playerWins) {
-        console.log("Game ended. Computer wins.")
-    } else if (playerWins > computerWins) {
-        console.log("Game ended. Player wins.")
-    } else {
-        console.log("Game ended. Tie.")
+    if (playerWins >= 5 || computerWins >= 5) {
+
+        if (computerWins > playerWins) {
+            roundStatus.textContent = ("Game ended. Computer wins.")
+        } else if (playerWins > computerWins) {
+            roundStatus.textContent = ("Game ended. Player wins.")
+        } else {
+            roundStatus.textContent = ("Game ended. Tie.")
+        }
     }
 }
-
-game();
