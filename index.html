@@ -6,16 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 
 <body>
-    <div id="container">
-        <button id="Rock"><label for="Rock">Rock</label></button>
-        <button id="Paper"><label for="Paper">Paper</label></button>
-        <button id="Scissors"><label for="Scissors">Scissors</label></button>
-        <div id="Player-Score">Player: 0</div>
-        <div id="Computer-Score">Computer: 0</div>
+    <div class="flavour-text">
+        <h1>Rock Paper Scissors</h1>
+        <h2>The revolutionary edition.</h2>
+        <h6>Because it can be played in the browser.</h6>
+    </div>
+
+    <div class="container">
+        <div class="choices">
+            <button id="Rock"><label for="Rock">Rock</label></button>
+            <button id="Paper"><label for="Paper">Paper</label></button>
+            <button id="Scissors"><label for="Scissors">Scissors</label></button>
+        </div>
+
+        <div class="scores">
+            <div id="Player-Score">Player: 0</div>
+            <div id="Computer-Score">Computer: 0</div>
+        </div>
         <div id="Round">Round Status</div>
     </div>
 </body>

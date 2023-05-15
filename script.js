@@ -30,13 +30,13 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
         whoWon = "None";
-        return "Tie. " + playerSelection + " is the same as " + computerSelection;
+        return "Tie. " + playerSelection + " is the same as " + computerSelection + ".";
     } else if ((playerSelection == "Scissors" && computerSelection == "Paper") || (playerSelection == "Paper" && computerSelection == "Rock") || (playerSelection == "Rock" && computerSelection == "Scissors")) {
         whoWon = "Player";
-        return "You Win! " + playerSelection + " beats " + computerSelection;
+        return "You Win! " + playerSelection + " beats " + computerSelection + ".";
     } else {
         whoWon = "Computer";
-        return "You Lose! " + computerSelection + " beats " + playerSelection;
+        return "You Lose! " + computerSelection + " beats " + playerSelection + ".";
     }
 }
 
